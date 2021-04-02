@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "ar.com.wolox.test"
+    },
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "monolith",
+    "baseName": "woloxTest",
+    "packageName": "ar.com.wolox.test",
+    "packageFolder": "ar/com/wolox/test",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "no",
+    "devDatabaseType": "no",
+    "prodDatabaseType": "no",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZTFlOTM3NWU3NTU5ODkxMWQ5MDQ5NGNlNGFkZjY4YTA5OTY0YzA4MDdhMWNjMmIyYTU4NTA5ZjM0YWU1ZmRhNDJhODM2ZTJhNGJlNGE2NGUxNzM1MTkwY2MzYTUyODYyMDFkZWIyOWRjMGQwMzVlODQ1ZmZjYWJiMzczNGY5Y2I=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1617263819986,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}
