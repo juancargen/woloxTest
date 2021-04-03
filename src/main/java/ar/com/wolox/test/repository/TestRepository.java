@@ -1,9 +1,6 @@
 package ar.com.wolox.test.repository;
 
-import ar.com.wolox.test.domain.Album;
-import ar.com.wolox.test.domain.Comment;
-import ar.com.wolox.test.domain.Photo;
-import ar.com.wolox.test.domain.User;
+import ar.com.wolox.test.domain.*;
 import ar.com.wolox.test.service.TestService;
 
 import java.util.List;
@@ -39,5 +36,15 @@ public interface TestRepository{
     obtener comentarios filtrados por nombre
      */
     List<Comment> obtenerCommentsName(String name);
+
+    /*
+    obtener permisos
+     */
+    List<Permiso> obtenerPermisos();
+
+    /*
+    obtener usuarios con un permiso determinado y album especifico
+     */
+    List<User> obtenerUsersPermiso(String permiso, String albumId);
 
 }

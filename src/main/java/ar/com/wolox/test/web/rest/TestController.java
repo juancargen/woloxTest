@@ -1,9 +1,6 @@
 package ar.com.wolox.test.web.rest;
 
-import ar.com.wolox.test.domain.Album;
-import ar.com.wolox.test.domain.Comment;
-import ar.com.wolox.test.domain.Photo;
-import ar.com.wolox.test.domain.User;
+import ar.com.wolox.test.domain.*;
 import ar.com.wolox.test.service.TestService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +49,16 @@ public class TestController {
     public ResponseEntity<List<Comment>> obtenerCommentariosNombre(@RequestParam(name="name", required=true, defaultValue="a")  String name){
         return ResponseEntity.ok().body(testService.obtenerCommentsName(name));
 
+    }
+
+    @GetMapping(value = "/permisos")
+    public ResponseEntity<List<Permiso>> obtenerPermisos(){
+        return ResponseEntity.ok().body(testService.obtenerPermisos());
+    }
+
+    @GetMapping(value = "usersPermiso")
+    public ResponseEntity<List<User>> obtenerUsersPermiso(@RequestParam(name = "permiso", required = true, defaultValue = "lectura") String permiso, @RequestParam(name = "albumId", required = true, defaultValue = "1") String albumId){
+        return ResponseEntity.ok().body(testService.obtenerUsersPermiso(permiso, albumId));
     }
 
 

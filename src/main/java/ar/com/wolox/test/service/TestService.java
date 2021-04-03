@@ -1,14 +1,10 @@
 package ar.com.wolox.test.service;
 
-import ar.com.wolox.test.domain.Album;
-import ar.com.wolox.test.domain.Comment;
-import ar.com.wolox.test.domain.Photo;
-import ar.com.wolox.test.domain.User;
+import ar.com.wolox.test.domain.*;
 import ar.com.wolox.test.repository.TestRepository;
 import com.google.gson.JsonParser;
 import com.google.gson.*;
 import jdk.nashorn.api.scripting.URLReader;
-
 
 import java.net.*;
 import java.util.ArrayList;
@@ -19,6 +15,7 @@ public class TestService implements TestRepository {
     private static URL urlAlbums = null;
     private static URL urlPhotos = null;
     private static URL urlComments = null;
+    private static URL urlPermisos = null;
 
     static {
         try {
@@ -26,6 +23,7 @@ public class TestService implements TestRepository {
             urlAlbums = new URL("https://jsonplaceholder.typicode.com/albums");
             urlPhotos = new URL("https://jsonplaceholder.typicode.com/photos");
             urlComments = new URL("https://jsonplaceholder.typicode.com/comments");
+            urlPermisos = new URL("http://localhost:3000/permiso");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -226,6 +224,84 @@ public class TestService implements TestRepository {
 
         }catch (Exception ex){
             System.err.println(ex.getMessage());
+        }finally {
+            return list;
+        }
+    }
+
+    @Override
+    public List<Permiso> obtenerPermisos() {
+        List<Permiso> list = new ArrayList<Permiso>();
+        Permiso permiso;
+
+        try {
+            JsonParser jsonParser = new JsonParser();
+            //Object object = jsonParser.parse(new FileReader(filePath));
+            Object object = jsonParser.parse(new URLReader(urlPermisos));
+            JsonArray jsonArray = (JsonArray) object;
+
+            System.out.println("Permisos: ");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject jsonObject = (JsonObject) jsonArray.get(i);
+                permiso = new Permiso(jsonObject);
+                System.out.println(jsonObject);
+                list.add(permiso);
+            }
+            System.out.println("----------------------------------------------------------");
+
+
+        }catch (Exception ex){
+            System.err.println(ex.getMessage());
+        }finally {
+            return list;
+        }
+    }
+
+    @Override
+    public List<User> obtenerUsersPermiso(String permiso, String albumId) {
+        List<User> list = new ArrayList<User>();
+        User user;
+
+        try{
+            ArrayList arrayListUserId = new ArrayList();
+            JsonParser jsonParser = new JsonParser();
+            Object object = jsonParser.parse(new URLReader(urlPermisos));
+            JsonArray jsonArray = (JsonArray) object;
+
+            for (int i=0; i<jsonArray.size();i++){
+                JsonObject jsonObject = (JsonObject) jsonArray.get(i);
+                //preguntar por el permiso determinado y album especifico
+                //para capturar los userIds
+                if(jsonObject.get("permiso").toString().contains(permiso) && jsonObject.get("albumId").toString().equals(albumId)){
+                    //se obtiene el userId de la condicion especifica
+                    arrayListUserId.add(jsonObject.get("usuarioId").toString());
+                }
+            }
+
+            System.out.println("Usuarios Id para permisos: ");
+            for (int i =0;i<arrayListUserId.size(); i++){
+                System.out.println(arrayListUserId.get(i));
+            }
+
+            //ahora debo recorrer los usuarios para mostrar
+            object = jsonParser.parse(new URLReader(urlUsers));
+            jsonArray = (JsonArray) object;
+
+            System.out.println("Users Permiso y Album: ");
+            for (int i=0;i<jsonArray.size();i++){
+                JsonObject jsonObjectUsers = (JsonObject) jsonArray.get(i);
+                for(int j=0;j<arrayListUserId.size();j++){
+                    //si el userId coincide con el userid del array
+                    if(jsonObjectUsers.get("id").toString().equals(arrayListUserId.get(j))){
+                        System.out.println(jsonObjectUsers);
+                        user = new User(jsonObjectUsers);
+                        list.add(user);
+                    }
+                }
+            }
+
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
         }finally {
             return list;
         }
