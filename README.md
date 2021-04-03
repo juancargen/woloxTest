@@ -30,7 +30,7 @@ Aqui se encuentra la clase TestController como controlador puente de la API; all
 El proyecto usa swagger-ui para la presentacion de la API que enlaza los controladores existentes en el sistema y la estructura de los modelos
 
 ## Pasos para ingresar al sistema
-Una vez descargado el repositorio desde GitHub en el IDE, se ejecuta Run del main que dispara el Spring Boot o luego de hacer maven install correr el .jar generado en la carpeta target desde el jre.
+Una vez descargado el repositorio desde GitHub en el IDE, se ejecuta Run del main que dispara el Spring Boot o luego de hacer maven install correr el .jar generado en la carpeta target desde el jre (wolox-test-0.0.1-SNAPSHOT.jar).
 Luego en la consola se imprime el arranque del sistema y brinda las url de acceso de la aplicacion por http, en el puerto 8080.
 
 luego de ingresar a la url y haber accedido al sistema se llega a la landing page Home; se requiere iniciar sesión y se ingresa como credenciales en account->sing in /
