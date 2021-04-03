@@ -31,14 +31,7 @@ El proyecto usa swagger-ui para la presentacion de la API que enlaza los control
 
 ## Pasos para ingresar al sistema
 Una vez descargado el repositorio desde GitHub en el IDE, se ejecuta Run del main que dispara el Spring Boot o luego de hacer maven install correr el .jar generado en la carpeta target desde el jre.
-Luego en la consola se imprime el arranque del sistema y brinda las url de acceso de la aplicacion por http, en el puerto 8080 de la siguiente manera:
-
-----------------------------------------------------------
-	Application 'woloxTest' is running! Access URLs:
-	Local: 		http://localhost:8080/
-	External: 	http://192.168.1.1:8080/
-	Profile(s): 	[swagger, dev]
-----------------------------------------------------------
+Luego en la consola se imprime el arranque del sistema y brinda las url de acceso de la aplicacion por http, en el puerto 8080.
 
 luego de ingresar a la url y haber accedido al sistema se llega a la landing page Home; se requiere iniciar sesión y se ingresa como credenciales en account->sing in /
 login: admin y password: admin en donde ingresa al Home ya logueado; luego en el menú Administration->API abre la pagina swagger-ui con los accesos a los controladores y modelos existentes.
