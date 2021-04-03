@@ -74,7 +74,7 @@ public class TestService implements TestRepository {
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonObject jsonObject = (JsonObject) jsonArray.get(i);
                 album = new Album(jsonObject);
-                System.out.println(album.toString());
+                System.out.println(jsonObject);
                 list.add(album);
             }
             System.out.println("----------------------------------------------------------");
