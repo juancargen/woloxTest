@@ -48,3 +48,18 @@ De la información del servicio se tiene que poder acceder a través de nuestra 
    servicio externo brindando la posibilidad de filtrar por el campo “name” o por el
    usuario que realizó dicho comentario: GET /api​/commentsName. obtenerCommentariosNombre 
     
+### segunda parte del ejercicio
+
+En el desarrollo de la segunda parte del ejercicio que consiste en implementar la gestion basica de permisos para compartir albumes entre los usuarios de la plataforma, se usa la herramienta json-server como lo indica la documentacion ejemplo
+y crear archivo de datos bd.json; para garantizar el correcto funcionamiento 
+
+En primer lugar se debe instalar en la terminal en la carpeta del proyecto 
+json-server con la sentencia: npm install -g json-server
+
+En segundo lugar se debe iniciar el servidor json-server con la entencia: json-server --watch db.json el cual se sirve en http://localhost:3000/
+
+Una vez instalado e iniciado el servidor json-server se retorna al controlador Test Controller para darle solucion a los puntos:
+1. Registrar un álbum compartido con un usuario y sus permisos: POST /api/createPermiso. createPermiso
+2. Cambiar los permisos de un usuario para un álbum determinado:
+3. Traer todos los usuarios que tienen un permiso determinado respecto a un
+   álbum específico: GET /api/usersPermiso. obtenerUsersPermiso

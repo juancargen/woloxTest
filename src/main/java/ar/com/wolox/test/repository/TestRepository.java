@@ -3,6 +3,9 @@ package ar.com.wolox.test.repository;
 import ar.com.wolox.test.domain.*;
 import ar.com.wolox.test.service.TestService;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 
 public interface TestRepository{
@@ -46,5 +49,22 @@ public interface TestRepository{
     obtener usuarios con un permiso determinado y album especifico
      */
     List<User> obtenerUsersPermiso(String permiso, String albumId);
+
+    /*
+    obtener permiso por id
+     */
+    Permiso obtenerPermiso(Long id);
+
+    /*
+    insertar un permiso
+     */
+    Permiso createPermiso(Permiso permiso) throws IOException;
+
+    /*
+    actualizar un permiso
+     */
+    Permiso updatePermiso(Permiso permiso) throws IOException;
+
+
 
 }

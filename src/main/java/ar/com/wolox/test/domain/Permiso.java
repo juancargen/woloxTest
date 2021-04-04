@@ -4,15 +4,15 @@ import com.google.gson.JsonObject;
 
 public class Permiso {
 
-    private long id;
+    private Long id;
 
-    private long usuarioId;
+    private Long usuarioId;
 
-    private long albumId;
+    private Long albumId;
 
     private String permiso;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -20,19 +20,19 @@ public class Permiso {
         this.id = id;
     }
 
-    public long getUsuarioId() {
+    public Long getUsuarioId() {
         return usuarioId;
     }
 
-    public void setUsuarioId(long usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
-    public long getAlbumId() {
+    public Long getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(long albumId) {
+    public void setAlbumId(Long albumId) {
         this.albumId = albumId;
     }
 
@@ -44,11 +44,15 @@ public class Permiso {
         this.permiso = permiso;
     }
 
+    //constructores permiso
     public Permiso(JsonObject jsonObject){
-        this.id = jsonObject.get("id").getAsInt();
-        this.usuarioId = jsonObject.get("usuarioId").getAsInt();
-        this.albumId = jsonObject.get("albumId").getAsInt();
+        this.id = jsonObject.get("id").getAsLong();
+        this.usuarioId = jsonObject.get("usuarioId").getAsLong();
+        this.albumId = jsonObject.get("albumId").getAsLong();
         this.permiso = jsonObject.get("permiso").getAsString();
+
+    }
+    public Permiso(){
 
     }
 }

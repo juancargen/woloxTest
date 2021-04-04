@@ -1,16 +1,64 @@
 {
-  "permiso" : [
+  "permiso": [
     {
       "id": 1,
       "usuarioId": 1,
-      "albumId" : 98,
-      "permiso" : "lectura"
+      "albumId": 98,
+      "permiso": "lectura"
     },
     {
       "id": 2,
       "usuarioId": 1,
-      "albumId" : 99,
-      "permiso" : "escritura"
+      "albumId": 99,
+      "permiso": "escritura"
+    },
+    {
+      "id": 90,
+      "usuarioId": 1,
+      "albumId": 90,
+      "permiso": "lectura"
+    },
+    {
+      "id": 91,
+      "usuarioId": 1,
+      "albumId": 100,
+      "permiso": "escritura"
+    },
+    {
+      "id": 92,
+      "usuarioId": 2,
+      "albumId": 25,
+      "permiso": "escritura"
+    },
+    {
+      "id": 93,
+      "usuarioId": 3,
+      "albumId": 30,
+      "permiso": "lectura"
+    },
+    {
+      "id": 94,
+      "usuarioId": 5,
+      "albumId": 22,
+      "permiso": "escritura"
+    },
+    {
+      "id": 95,
+      "usuarioId": 1,
+      "albumId": 34,
+      "permiso": "lectura"
+    },
+    {
+      "id": "96",
+      "usuarioId": "4",
+      "albumId": "23",
+      "permiso": "lectura"
+    },
+    {
+      "id": "97",
+      "usuarioId": "3",
+      "albumId": "40",
+      "permiso": "escritura"
     }
   ]
 }

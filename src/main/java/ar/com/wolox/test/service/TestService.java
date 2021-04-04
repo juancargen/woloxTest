@@ -6,9 +6,12 @@ import com.google.gson.JsonParser;
 import com.google.gson.*;
 import jdk.nashorn.api.scripting.URLReader;
 
+import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TestService implements TestRepository {
     private static URL urlUsers = null;
@@ -31,6 +34,7 @@ public class TestService implements TestRepository {
 
     //private static final String filePath = new String("/Volumes/Data/datos/users.json");
 
+    @Override
     public List<User> obtenerUsers() {
 
         List<User> list = new ArrayList<User>();
@@ -57,6 +61,7 @@ public class TestService implements TestRepository {
 
     }
 
+    @Override
     public List<Album> obtenerAlbums() {
 
         List<Album> list = new ArrayList<Album>();
@@ -86,6 +91,7 @@ public class TestService implements TestRepository {
 
     }
 
+    @Override
     public List<Album> obtenerAlbumsUserdI(String userId) {
 
         List<Album> list = new ArrayList<Album>();
@@ -117,6 +123,7 @@ public class TestService implements TestRepository {
 
     }
 
+    @Override
     public List<Photo> obtenerPhotos() {
 
         List<Photo> list = new ArrayList<Photo>();
@@ -144,6 +151,7 @@ public class TestService implements TestRepository {
 
     }
 
+    @Override
     public List<Photo> obtenerPhotosUserId(String userId) {
 
         List<Photo> list = new ArrayList<Photo>();
@@ -200,6 +208,7 @@ public class TestService implements TestRepository {
 
     }
 
+    @Override
     public List<Comment> obtenerCommentsName(String name) {
         List<Comment> list = new ArrayList<Comment>();
         Comment comment;
@@ -305,5 +314,78 @@ public class TestService implements TestRepository {
         }finally {
             return list;
         }
+    }
+
+    @Override
+    public Permiso obtenerPermiso(Long id) {
+        Permiso permiso = new Permiso();
+
+        try {
+            JsonParser jsonParser = new JsonParser();
+            //Object object = jsonParser.parse(new FileReader(filePath));
+            Object object = jsonParser.parse(new URLReader(urlPermisos));
+            JsonArray jsonArray = (JsonArray) object;
+
+            System.out.println("Permiso id: ");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject jsonObject = (JsonObject) jsonArray.get(i);
+
+                if (jsonObject.get("id").equals(id)){
+                    permiso = new Permiso(jsonObject);
+                    System.out.println(jsonObject);
+                    break;
+                }
+            }
+            System.out.println("----------------------------------------------------------");
+        }catch (Exception ex){
+            System.err.println(ex.getMessage());
+        }finally {
+            return permiso;
+        }
+    }
+
+    @Override
+    public Permiso createPermiso(Permiso permiso) throws IOException {
+        try {
+            Map<String, Object> params = new LinkedHashMap<>();
+
+            params.put("id", permiso.getId());
+            params.put("usuarioId", permiso.getUsuarioId());
+            params.put("albumId", permiso.getAlbumId());
+            params.put("permiso", permiso.getPermiso());
+
+            StringBuilder postData = new StringBuilder();
+            for (Map.Entry<String, Object> param : params.entrySet()) {
+                if (postData.length() != 0)
+                    postData.append('&');
+                postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                postData.append('=');
+                postData.append(URLEncoder.encode(String.valueOf(param.getValue()),
+                    "UTF-8"));
+            }
+            byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+            //Permiso result = testService.save(pais);
+            URL url = new URL(urlPermisos.toString());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type",
+                "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length",
+                String.valueOf(postDataBytes.length));
+            conn.setDoOutput(true);
+            conn.getOutputStream().write(postDataBytes);
+
+            Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }finally {
+            return permiso;
+        }
+    }
+
+    @Override
+    public Permiso updatePermiso(Permiso permiso) throws IOException {
+        return null;
     }
 }
